@@ -1,0 +1,11 @@
+    <div class="container text-center" style="display: flex; flex-wrap: wrap;">
+        <% for (let i = 0, keys = Object.keys(deployedPals); i < keys.length; i++) { %>
+                    <div class="card" style="width: 18rem; margin: 5px;">
+                        <img src="path/to/image/<%= keys[i] %>.jpg" class="card-img-top" alt="<%= keys[i] %>">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= keys[i] %></h5>
+                            <p class="card-text"><%= JSON.stringify(deployedPals[keys[i]]) %></p>
+                        </div>
+                    </div>
+        <% } %>
+    </div>
