@@ -10,6 +10,7 @@ app.listen(8080, () => {
     console.log('Server is running on port 8080');
 });
 
+
 app.get('/palDB', (req, res) => {
     const playerPals = req.cookies.palnames;
     res.render('./boilerplate.ejs', { data , playerPals});
@@ -78,4 +79,11 @@ app.post('/palDB', (req, res) => {
     const { palnames } = req.body;
     res.cookie('palnames', palnames,{overwrite:true,maxAge: 99999999999999999999999999999999999999999999});
     res.redirect('/palDB');
+});
+
+app.get('/', (req, res) => {
+    res.render('./boilerplate.ejs');
+});
+app.get('*', (req, res) => {
+    res.render('./boilerplate.ejs');
 });
