@@ -1,4 +1,4 @@
-<form actio="/palDB" method="POST">
+<form action="/palDB" method="POST">
   <div class="container text-center" style="display: flex; flex-wrap: wrap;">
     <% for (pal in data) { %>
       <div class="card" style="width: 18rem; margin: 5px;">
@@ -7,7 +7,7 @@
           <h5 class="card-title"><%= data[pal].name %></h5>
           <p class="card-text"><%= JSON.stringify(data[pal].skills) %></p>
           <input type="checkbox" name="palnames" id="palnames" value="<%= data[pal].name %>"
-            <% if (playerPals.includes(data[pal].name)) { %> checked <% } %>>
+            <% if (typeof playerPals !== 'undefined' && playerPals.includes(data[pal].name)) { %> checked <% } %>
         </div>
       </div>
     <% } %>

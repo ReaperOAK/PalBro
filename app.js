@@ -66,18 +66,17 @@ function suggestPalsToDeploy(baseLevel, data, playerCreatures) {
     return deployedPals;
 }
 
-const baseLevel = 10;
+const baseLevel = req.cookies.baseLevel;
 const playerCreatures = req.cookies.palnames; 
-console.log(req.cookies.palnames);
 const deployedPals = suggestPalsToDeploy(baseLevel, data, playerCreatures);
 
-    res.render('./boilerplate.ejs', { deployedPals });
+    res.render('./boilerplate.ejs', { deployedPals, baseLevel });
 });
 
 
 app.post('/palDB', (req, res) => {
     const { palnames } = req.body;
-    res.cookie('palnames', palnames,{overwrite:true,maxAge: 99999999999999999999999999999999999999999999});
+    res.cookie('palnames', palnames, { overwrite: true });
     res.redirect('/palDB');
 });
 
@@ -86,4 +85,10 @@ app.get('/', (req, res) => {
 });
 app.get('*', (req, res) => {
     res.render('./boilerplate.ejs');
+});
+
+app.post('/basePals', (req, res) => {
+    const { baseLevel } = req.body;
+    res.cookie('baseLevel', baseLevel, { overwrite: true });
+    res.redirect('/basePals');
 });
